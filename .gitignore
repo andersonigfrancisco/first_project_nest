@@ -44,6 +44,8 @@ lerna-debug.log*
 
 #docker
 /data
+private_key.pem
+public_key.pem
 
 # temp directory
 .temp

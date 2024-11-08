@@ -6,6 +6,8 @@ export const envSchema = z.object({
   NODE_ENV: z.enum(['dev', 'test', 'production']).default('dev'),
   PORT: z.coerce.number().optional().default(3333),
   JWT_SECRET: z.string(),
+  JWT_PRIVATE_KEY: z.string().base64(),
+  JWT_PUBLIC_KEY: z.string().base64(),
   // OPENAI_API_KEY: z.string(),
 })
 
