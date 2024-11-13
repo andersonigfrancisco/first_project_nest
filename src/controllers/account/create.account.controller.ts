@@ -21,7 +21,7 @@ type CreateAccountBodySchema = z.infer<typeof createAccountBodySchema>
 @Controller('/accounts')
 @UsePipes(new ZodValidationPipe(createAccountBodySchema))
 export class CreateAccountController {
-  constructor(private readonly prismaService: PrismaService) {}
+  constructor(private prismaService: PrismaService) {}
 
   @Post()
   async handle(@Body() body: CreateAccountBodySchema) {

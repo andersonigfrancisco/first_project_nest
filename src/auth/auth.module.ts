@@ -11,8 +11,8 @@ import { Env } from 'src/env'
       inject: [ConfigService],
       global: true,
       useFactory(config: ConfigService<Env, true>) {
-        const privateKey = config.get('JWT_PRIVATE_KEY')
-        const publicKey = config.get('JWT_PUBLIC_KEY')
+        const privateKey = config.get('JWT_PRIVATE_KEY', { infer: true })
+        const publicKey = config.get('JWT_PUBLIC_KEY', { infer: true })
         return {
           signOptions: {
             algorithm: 'RS256',

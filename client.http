@@ -17,6 +17,12 @@ POST {{baseUrl}}/session
 Content-Type: application/json
 
 {
-	"email": "andersonfranciscoig@gmail.com",
+	"email": "andersonfranciscoigf@gmail.com",
 	"password": "testesenha"
 }
+
+###
+
+# @name get_profile
+GET {{baseUrl}}/profile
+Content-Type: application/json
