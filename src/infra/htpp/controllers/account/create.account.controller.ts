@@ -5,7 +5,7 @@ import {
   Post,
   UsePipes,
 } from '@nestjs/common'
-import { PrismaService } from '@/infra/prisma/prisma.services'
+import { PrismaService } from '@/infra/database/prisma/prisma.services'
 import { hash } from 'bcryptjs'
 import { z } from 'zod'
 import { ZodValidationPipe } from '@/infra/htpp/pipes/zod-validation-pipe'
