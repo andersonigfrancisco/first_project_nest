@@ -11,15 +11,15 @@ export class ProfileController {
 
   @Get()
   async handle(@CurrentUser() user: UserPayload) {
-    const user_ = await this.prismaService.user.findUnique({
+    const userProfile = await this.prismaService.user.findUnique({
       where: { id: user.sub },
     })
 
-    if (user_) {
-      const data = { ...user_ } as Partial<typeof user_>
-      delete data.password
+    if (userProfile) {
+      const user = { ...userProfile } as Partial<typeof userProfile>
+      delete user.password
       return {
-        user: data,
+        user,
       }
     }
 
