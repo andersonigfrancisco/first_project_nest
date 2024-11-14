@@ -23,7 +23,7 @@ describe('user get profile (E2E)', () => {
     await app.init()
   })
 
-  test('[POST] /session', async () => {
+  test('[POST] /profile', async () => {
     const user = await prisma.user.create({
       data: {
         name: 'userteste',
