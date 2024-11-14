@@ -21,7 +21,6 @@ beforeAll(async () => {
   const databaseURL = gernerateUniqueDatbaseURL(schemaId)
   process.env.DATABASE_URL = databaseURL
   execSync('pnpm prisma migrate deploy')
-  // execSync('pnpm prisma studio')
 })
 
 afterAll(async () => {
