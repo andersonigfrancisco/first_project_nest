@@ -64,7 +64,7 @@ export class Product extends Entity<CreateProductDTO> {
     return data
   }
 
-  static mapToProductEntity(productData: any): any {
+  static mapToProductEntity(productData: Product): unknown {
     const product = Product.create(
       {
         name: productData.name,

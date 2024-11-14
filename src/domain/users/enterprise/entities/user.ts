@@ -51,11 +51,33 @@ export class User extends Entity<UserProps> {
   }
 
   static create(props: Optional<UserProps, 'createdAt'>, id?: UniqueEntityId) {
-    const data = new User(
+    const user = new User(
       { ...props, createdAt: props.createdAt ?? new Date() },
       id,
     )
 
-    return data
+    return user
+  }
+
+  static mapToUserEntity(usertData: User): unknown {
+    const user = User.create(
+      {
+        name: usertData.name,
+        email: usertData.email,
+        password: usertData.password,
+        createdAt: usertData.createdAt,
+        updatedAt: usertData.updatedAt,
+      },
+      usertData.id,
+    )
+
+    return {
+      id: user.id,
+      name: user.name,
+      email: user.email,
+      password: user.password,
+      createdAt: user.createdAt,
+      updatedAt: user.updatedAt,
+    }
   }
 }

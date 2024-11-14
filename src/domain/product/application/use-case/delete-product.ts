@@ -7,7 +7,7 @@ interface DeleteProductUserCaseRequeste {
   productId: string
 }
 
-type ProductUserCaseResponse = Either<ResourceNotFoundError, {}>
+type ProductUserCaseResponse = Either<ResourceNotFoundError, null>
 
 export class DeleteProductUseCase {
   constructor(private productRepository: ProductRepository) {}
@@ -15,7 +15,6 @@ export class DeleteProductUseCase {
   async execute({
     productId,
   }: DeleteProductUserCaseRequeste): Promise<ProductUserCaseResponse> {
-
     const product = await this.productRepository.findById(productId)
 
     if (!product) {
@@ -23,6 +22,6 @@ export class DeleteProductUseCase {
     }
     await this.productRepository.delete(product)
 
-    return rigth({})
+    return rigth(null)
   }
 }
