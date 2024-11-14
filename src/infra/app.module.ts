@@ -1,11 +1,9 @@
 import { Module } from '@nestjs/common'
 import { ConfigModule } from '@nestjs/config'
 import { PrismaService } from './prisma/prisma.services'
-import { CreateAccountController } from './htpp/controllers/account/create.account.controller'
 import { envSchema } from './env'
 import { AuthModule } from './auth/auth.module'
-import { AuthenticateController } from './htpp/controllers/auth/auth.controller'
-import { ProfileController } from './htpp/controllers/account/profile.controller'
+import { HttpModule } from './htpp/http.module'
 
 @Module({
   imports: [
@@ -14,11 +12,7 @@ import { ProfileController } from './htpp/controllers/account/profile.controller
       isGlobal: true,
     }),
     AuthModule,
-  ],
-  controllers: [
-    CreateAccountController,
-    AuthenticateController,
-    ProfileController,
+    HttpModule,
   ],
   providers: [PrismaService],
 })
