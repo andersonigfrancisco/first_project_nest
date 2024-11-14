@@ -1,6 +1,5 @@
 import { Module } from '@nestjs/common'
 import { ConfigModule } from '@nestjs/config'
-import { PrismaService } from './prisma/prisma.services'
 import { envSchema } from './env'
 import { AuthModule } from './auth/auth.module'
 import { HttpModule } from './htpp/http.module'
@@ -14,6 +13,5 @@ import { HttpModule } from './htpp/http.module'
     AuthModule,
     HttpModule,
   ],
-  providers: [PrismaService],
 })
 export class AppModule {}
