@@ -1,4 +1,3 @@
-/*
 import { ProductRepository } from '@/domain/product/application/repositories/product-repository'
 import { Injectable } from '@nestjs/common'
 import { PrismaService } from '../prisma.services'
@@ -65,4 +64,3 @@ export class PrismaProductRepository implements ProductRepository {
     })
   }
 }
-*/

@@ -64,7 +64,7 @@ export class Product extends Entity<CreateProductDTO> {
     return data
   }
 
-  static mapToProductEntity(productData: Product): unknown {
+  static mapToProductEntity(productData: CreateProductDTO): Product {
     const product = Product.create(
       {
         name: productData.name,
@@ -74,10 +74,12 @@ export class Product extends Entity<CreateProductDTO> {
         createdAt: productData.createdAt,
         updatedAt: productData.updatedAt,
       },
-      productData.id,
+      new UniqueEntityId(productData.id),
     )
 
     // Retorne um objeto com os atributos desestruturados
+
+    /*
     return {
       id: productData.id,
       name: product.name,
@@ -87,5 +89,7 @@ export class Product extends Entity<CreateProductDTO> {
       createdAt: product.createdAt,
       updatedAt: product.updatedAt,
     }
+    */
+    return product
   }
 }
