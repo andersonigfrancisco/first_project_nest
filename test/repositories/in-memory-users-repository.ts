@@ -6,5 +6,6 @@ export class InMemoryUsersRepository implements UserRepository {
 
   async create(user: User) {
     this.items.push(user)
+    return this.items[this.items.length - 1]
   }
 }
