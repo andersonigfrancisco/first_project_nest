@@ -1,5 +1,5 @@
 import { User } from '../../../users/enterprise/entities/user'
 
-export interface UserRepository {
-  create(user: User): Promise<User | null>
+export abstract class UserRepository {
+  abstract create(user: User): Promise<User | null>
 }

@@ -3,6 +3,7 @@ import { CreateAccountController } from './controllers/account/create.account.co
 import { AuthenticateController } from './controllers/auth/auth.controller'
 import { ProfileController } from './controllers/account/profile.controller'
 import { DatabaseModule } from '../database/prisma/database.module'
+import { NestUserUseCase } from '../nest-use-case/neste-create-user-use-case'
 
 @Module({
   imports: [DatabaseModule],
@@ -11,5 +12,6 @@ import { DatabaseModule } from '../database/prisma/database.module'
     AuthenticateController,
     ProfileController,
   ],
+  providers: [NestUserUseCase],
 })
 export class HttpModule {}
