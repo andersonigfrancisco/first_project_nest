@@ -35,23 +35,19 @@ export class PrismaProductRepository implements ProductRepository {
     return products.map(PrismaProductMapper.toDomain)
   }
 
-  async save(data: Product): Promise<void> {
+  async save(product: Product): Promise<void> {
+    const data = PrismaProductMapper.toPersisten(product)
     await this.prismaService.product.update({
-      where: { id: data.id.toString() },
-      data: {
-        name: data.name,
-        category: data.category,
-        description: data.description,
-        price: data.price,
-        updatedAt: data.updatedAt,
-      },
+      where: { id: data.id },
+      data,
     })
   }
 
   async delete(product: Product): Promise<void> {
+    const data = PrismaProductMapper.toPersisten(product)
     await this.prismaService.product.delete({
       where: {
-        id: product.id.toString(),
+        id: data.id,
       },
     })
   }
