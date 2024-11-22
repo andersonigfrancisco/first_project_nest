@@ -3,6 +3,7 @@ import { Injectable } from '@nestjs/common'
 import { PrismaService } from '../prisma.services'
 import { PaginationParams } from '@/cors/repositories/pagination-params'
 import { Product } from '@/domain/product/enterprise/entities/Product'
+import { PrismaProductMapper } from '../mappers/prisma-product-mapper'
 
 @Injectable()
 export class PrismaProductRepository implements ProductRepository {
@@ -16,7 +17,7 @@ export class PrismaProductRepository implements ProductRepository {
     if (!product) {
       return null
     }
-    return Product.mapToProductEntity(product)
+    return PrismaProductMapper.toDomain(product)
   }
 
   async create(data: Product) {
@@ -39,7 +40,7 @@ export class PrismaProductRepository implements ProductRepository {
       take: limit,
     })
     return products.map((productData) =>
-      Product.mapToProductEntity(productData),
+      PrismaProductMapper.toDomain(productData),
     )
   }
 

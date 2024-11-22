@@ -3,15 +3,12 @@ import { Optional } from '@/cors/types/optional'
 import { UniqueEntityId } from '@/cors/unique-entity-id'
 
 interface UserProps {
+  id?: string
   name: string
   password: string
   email: string
   createdAt: Date
   updatedAt?: Date | null
-}
-
-interface PrismaUser extends UserProps {
-  id: string
 }
 
 export class User extends Entity<UserProps> {
@@ -60,30 +57,6 @@ export class User extends Entity<UserProps> {
       id,
     )
 
-    return user
-  }
-
-  static mapToUserEntity(usertData: PrismaUser): User {
-    const user = User.create(
-      {
-        name: usertData.name,
-        email: usertData.email,
-        password: usertData.password,
-        createdAt: usertData.createdAt,
-        updatedAt: usertData.updatedAt,
-      },
-      new UniqueEntityId(usertData.id),
-    )
-    /*
-    return {
-      id: user.id,
-      name: user.name,
-      email: user.email,
-      password: user.password,
-      createdAt: user.createdAt,
-      updatedAt: user.updatedAt,
-    }
-    */
     return user
   }
 }

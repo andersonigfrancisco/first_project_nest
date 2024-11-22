@@ -63,33 +63,4 @@ export class Product extends Entity<CreateProductDTO> {
 
     return data
   }
-
-  static mapToProductEntity(productData: CreateProductDTO): Product {
-    const product = Product.create(
-      {
-        name: productData.name,
-        description: productData.description,
-        price: productData.price,
-        category: productData.category,
-        createdAt: productData.createdAt,
-        updatedAt: productData.updatedAt,
-      },
-      new UniqueEntityId(productData.id),
-    )
-
-    // Retorne um objeto com os atributos desestruturados
-
-    /*
-    return {
-      id: productData.id,
-      name: product.name,
-      description: product.description,
-      price: product.price,
-      category: product.category,
-      createdAt: product.createdAt,
-      updatedAt: product.updatedAt,
-    }
-    */
-    return product
-  }
 }
