@@ -7,7 +7,11 @@ interface UserProps {
   password: string
   email: string
   createdAt: Date
-  updatedAt?: Date
+  updatedAt?: Date | null
+}
+
+interface PrismaUser extends UserProps {
+  id: string
 }
 
 export class User extends Entity<UserProps> {
@@ -59,7 +63,7 @@ export class User extends Entity<UserProps> {
     return user
   }
 
-  static mapToUserEntity(usertData: User): unknown {
+  static mapToUserEntity(usertData: PrismaUser): User {
     const user = User.create(
       {
         name: usertData.name,
@@ -68,9 +72,9 @@ export class User extends Entity<UserProps> {
         createdAt: usertData.createdAt,
         updatedAt: usertData.updatedAt,
       },
-      usertData.id,
+      new UniqueEntityId(usertData.id),
     )
-
+    /*
     return {
       id: user.id,
       name: user.name,
@@ -79,5 +83,7 @@ export class User extends Entity<UserProps> {
       createdAt: user.createdAt,
       updatedAt: user.updatedAt,
     }
+    */
+    return user
   }
 }
