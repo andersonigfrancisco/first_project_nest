@@ -1,17 +1,9 @@
 import { Entity } from '@/cors/entity'
 import { Optional } from '@/cors/types/optional'
 import { UniqueEntityId } from '@/cors/unique-entity-id'
+import { CreateUserDTO } from '@/domain/product/shared/user-dtos'
 
-interface UserProps {
-  id?: string
-  name: string
-  password: string
-  email: string
-  createdAt: Date
-  updatedAt?: Date | null
-}
-
-export class User extends Entity<UserProps> {
+export class User extends Entity<CreateUserDTO> {
   get name() {
     return this.props.name
   }
@@ -51,7 +43,10 @@ export class User extends Entity<UserProps> {
     this.touch()
   }
 
-  static create(props: Optional<UserProps, 'createdAt'>, id?: UniqueEntityId) {
+  static create(
+    props: Optional<CreateUserDTO, 'createdAt'>,
+    id?: UniqueEntityId,
+  ) {
     const user = new User(
       { ...props, createdAt: props.createdAt ?? new Date() },
       id,

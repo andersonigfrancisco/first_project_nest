@@ -7,7 +7,7 @@ export class PrismaUserMapper {
     return User.create(
       {
         email: raw.email,
-        id: raw.id,
+        id: new UniqueEntityId(raw.id),
         name: raw.name,
         password: raw.password,
         createdAt: raw.createdAt,

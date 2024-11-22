@@ -1,5 +1,7 @@
+import { UniqueEntityId } from '@/cors/unique-entity-id'
+
 export interface CreateProductDTO {
-  id?: string
+  id?: UniqueEntityId
   name: string
   description: string
   price: number
@@ -8,6 +10,6 @@ export interface CreateProductDTO {
   updatedAt?: Date
 }
 
-export interface UpdateProductDTO extends CreateProductDTO {
-  productId: string
+export interface ProductDTO extends CreateProductDTO {
+  id: UniqueEntityId
 }

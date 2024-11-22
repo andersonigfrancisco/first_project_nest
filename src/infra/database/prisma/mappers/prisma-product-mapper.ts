@@ -6,7 +6,7 @@ export class PrismaProductMapper {
   static toDomain(raw: PirsmaProduct): Product {
     return Product.create(
       {
-        id: raw.id,
+        id: new UniqueEntityId(raw.id),
         category: raw.category,
         description: raw.description,
         name: raw.name,
