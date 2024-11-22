@@ -20,17 +20,10 @@ export class PrismaProductRepository implements ProductRepository {
     return PrismaProductMapper.toDomain(product)
   }
 
-  async create(data: Product) {
+  async create(product: Product) {
+    const data = PrismaProductMapper.toPersisten(product)
     await this.prismaService.product.create({
-      data: {
-        id: data.id.toString(),
-        name: data.name,
-        description: data.description,
-        price: data.price,
-        category: data.category,
-        createdAt: data.createdAt,
-        updatedAt: data.updatedAt,
-      },
+      data,
     })
   }
 
@@ -39,9 +32,7 @@ export class PrismaProductRepository implements ProductRepository {
       skip: (page - 1) * limit,
       take: limit,
     })
-    return products.map((productData) =>
-      PrismaProductMapper.toDomain(productData),
-    )
+    return products.map(PrismaProductMapper.toDomain)
   }
 
   async save(data: Product): Promise<void> {

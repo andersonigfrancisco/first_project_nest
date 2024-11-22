@@ -1,4 +1,4 @@
-import { Product as PirsmaProduct } from '@prisma/client'
+import { Product as PirsmaProduct, Prisma } from '@prisma/client'
 import { Product } from '@/domain/product/enterprise/entities/Product'
 import { UniqueEntityId } from '@/cors/unique-entity-id'
 
@@ -16,5 +16,17 @@ export class PrismaProductMapper {
       },
       new UniqueEntityId(raw.id),
     )
+  }
+
+  static toPersisten(product: Product): Prisma.ProductUncheckedCreateInput {
+    return {
+      id: product.id.toString(),
+      category: product.category,
+      name: product.name,
+      price: product.price,
+      description: product.description,
+      createdAt: product.createdAt,
+      updatedAt: product.updatedAt,
+    }
   }
 }
